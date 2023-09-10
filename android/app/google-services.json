@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "911757792742",
+    "project_id": "sih-waqi",
+    "storage_bucket": "sih-waqi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:911757792742:android:d2d36b0bbd40a6a24ff227",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOTp-uAUFmiph-bh3PD03EiN-pV0WGLhQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
