@@ -15,13 +15,27 @@ class AirQualityContainer extends StatefulWidget {
 
 class _AirQualityContainerState extends State<AirQualityContainer> {
   AIRBUBBLE? currentAirBubble;
+  void nullify() {
+    Future.delayed(
+      const Duration(seconds: 10),
+      () => setState(
+        () {
+          currentAirBubble = null;
+        },
+      ),
+    );
+  }
+
+  void initState (){
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     CustomThemeData OBJ = CustomThemeData.from(context);
     return Expanded(
       child: Container(
-        margin:
-            EdgeInsets.only(top: OBJ.height * 0.01, bottom: OBJ.height * 0.01),
+        margin: EdgeInsets.only(top: OBJ.height * 0.01),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -34,12 +48,12 @@ class _AirQualityContainerState extends State<AirQualityContainer> {
                 child: Stack(
                   children: [
                     Positioned(
-                      bottom: OBJ.height * 0.04,
-                      right: OBJ.width * 0.04,
+                      bottom: OBJ.height * 0.08,
+                      right: OBJ.width * 0.08,
                       child: GestureDetector(
                         onTap: () => setState(() {
                           currentAirBubble = AIRBUBBLE.Nitrogen;
-                          print(currentAirBubble.toString());
+                          nullify();
                         }),
                         child: AirBubble(
                           maxHeight: 25,
@@ -53,12 +67,12 @@ class _AirQualityContainerState extends State<AirQualityContainer> {
                       ),
                     ),
                     Positioned(
-                      bottom: OBJ.height * 0.06,
+                      bottom: OBJ.height * 0.1,
                       left: 0,
                       child: GestureDetector(
                         onTap: () => setState(() {
                           currentAirBubble = AIRBUBBLE.CarbonDioxide;
-                          print(currentAirBubble.toString());
+                          nullify();
                         }),
                         child: AirBubble(
                           maxHeight: -25,
@@ -77,7 +91,7 @@ class _AirQualityContainerState extends State<AirQualityContainer> {
                       child: GestureDetector(
                         onTap: () => setState(() {
                           currentAirBubble = AIRBUBBLE.Oxygen;
-                          print(currentAirBubble.toString());
+                          nullify();
                         }),
                         child: AirBubble(
                           maxHeight: -15,
@@ -96,45 +110,75 @@ class _AirQualityContainerState extends State<AirQualityContainer> {
             ),
             Expanded(
               flex: 1,
-              child: ListView(
-                physics: const BouncingScrollPhysics(),
-                padding: EdgeInsets.only(top: OBJ.height * 0.02),
-                children: List.generate(
-                  3,
-                  (index) => Container(
-                    margin: const EdgeInsets.only(bottom: 6),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 8,
-                          height: 8,
-                          margin: const EdgeInsets.only(right: 6),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors:
-                                  OBJ.airBubbleColors[AIRBUBBLE.values[index]]!,
+              child: currentAirBubble != null
+                  ? Padding(
+                      padding: EdgeInsets.only(top: OBJ.height * 0.01),
+                      child: Column(
+                        children: [
+                          ShaderMask(
+                            shaderCallback: (Rect rect) => LinearGradient(
+                                    colors: OBJ.airBubbleColors[AIRBUBBLE
+                                        .values[currentAirBubble!.index]]!)
+                                .createShader(rect),
+                            child: Text(
+                              AIRBUBBLE.values[currentAirBubble!.index].name
+                                  .toUpperCase(),
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: OBJ.mediumTextSize,
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            AIRBUBBLE.values[index].name,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: OBJ.subTextSize),
+                          SizedBox(
+                            height: OBJ.height * 0.01,
+                          ),
+                          Text(
+                            "hello" + currentAirBubble.toString(),
+                            style: TextStyle(fontSize: OBJ.textSize),
+                          ),
+                        ],
+                      ),
+                    )
+                  : ListView(
+                      physics: const BouncingScrollPhysics(),
+                      padding: EdgeInsets.only(top: OBJ.height * 0.02),
+                      children: List.generate(
+                        3,
+                        (index) => Container(
+                          margin: const EdgeInsets.only(bottom: 6),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 8,
+                                height: 8,
+                                margin: const EdgeInsets.only(right: 6),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                    colors: OBJ.airBubbleColors[
+                                        AIRBUBBLE.values[index]]!,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  AIRBUBBLE.values[index].name,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: OBJ.mediumTextSize,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-              ),
             )
           ],
         ),

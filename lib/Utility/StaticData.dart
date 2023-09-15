@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 enum AIRBUBBLE { Oxygen, CarbonDioxide, Nitrogen }
 
+enum AIR_OR_WATER { Air, Water }
+
+enum WATER_COMPONENT { TDS, DO, PH, EC, Ca }
+
 class StaticData {
   static const Icon eco = Icon(Icons.eco);
   static const Icon waterDrop = Icon(Icons.water_drop);

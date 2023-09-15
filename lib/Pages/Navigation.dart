@@ -47,17 +47,18 @@ class _NavigationState extends State<Navigation> {
               navBarItem(icon: StaticData.profile.icon!, state: 2, OBJ: OBJ),
             ]),
         body: SafeArea(
-            child: Container(
-          margin: EdgeInsets.only(
-            top: OBJ.topPadding,
-            left: OBJ.harizontalPadding,
-            right: OBJ.harizontalPadding,
+          child: Container(
+            margin: EdgeInsets.only(
+              top: OBJ.topPadding,
+              left: OBJ.harizontalPadding,
+              right: OBJ.harizontalPadding,
+            ),
+            child: IndexedStack(
+              index: index,
+              children: widgetList,
+            ),
           ),
-          child: IndexedStack(
-            index: index,
-            children: widgetList,
-          ),
-        )),
+        ),
       ),
     );
   }

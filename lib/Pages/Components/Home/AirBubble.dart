@@ -60,7 +60,7 @@ class _AirBubbleState extends State<AirBubble> {
   @override
   Widget build(BuildContext context) {
     CustomThemeData OBJ = CustomThemeData.from(context);
-    double bubbleRadius = min(widget.radius + 60, 140);
+    double bubbleRadius = min(widget.radius + 40, 110);
     return AnimatedContainer(
       duration: const Duration(seconds: 4),
       transform: _transformationMatrix,

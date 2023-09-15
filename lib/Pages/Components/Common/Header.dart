@@ -12,7 +12,7 @@ class Header extends StatelessWidget {
     return Text(
       headerText.toUpperCase(),
       style: TextStyle(
-        fontSize: OBJ.subTextSize,
+        fontSize: OBJ.mediumTextSize,
         fontWeight: FontWeight.bold,
       ),
     );

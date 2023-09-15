@@ -12,9 +12,12 @@ class CustomThemeData {
   final double topPadding;
   final double harizontalPadding;
 
+  final double smallTextSize;
+  final double mediumTextSize;
   final double textSize;
-  final double subTextSize;
+  final double subHeaderTextSize;
   final double headerTextSize;
+  final double largeHeaderTextSize;
 
   final Color primaryColor;
   final Color secondaryColor;
@@ -31,8 +34,11 @@ class CustomThemeData {
     required this.topPadding,
     required this.harizontalPadding,
     required this.textSize,
-    required this.subTextSize,
+    required this.subHeaderTextSize,
     required this.headerTextSize,
+    required this.smallTextSize,
+    required this.mediumTextSize,
+    required this.largeHeaderTextSize,
     required this.primaryColor,
     required this.secondaryColor,
     required this.mainGradient,
@@ -52,8 +58,11 @@ class CustomThemeData {
     double topPadding = height * 0.01;
     double harizontalPadding = width * 0.04;
 
-    double textSize = aspectRatio * 25;
-    double subTextSize = aspectRatio * 30;
+    double smallTextSize = aspectRatio * 22;
+    double mediumTextSize = aspectRatio * 30;
+    double textSize = aspectRatio * 27;
+    double largeHeaderTextSize = aspectRatio * 40;
+    double subHeaderTextSize = aspectRatio * 32;
     double headerTextSize = aspectRatio * 35;
 
     Color primaryColor = provider.isDark ? Colors.white : Colors.black87;
@@ -64,7 +73,7 @@ class CustomThemeData {
       end: Alignment.bottomRight,
       colors: provider.isDark
           ? const [Color(0xFF171717), Color(0xFF151617)]
-          : const [Color(0xFFEFECE9), Color(0xFFEFECE9)],
+          : const [Color.fromARGB(255, 252, 253, 255), Color.fromARGB(255, 255, 255, 255)],
     );
     Color iconColor = provider.isDark ? Colors.white : const Color(0xFFAEADAD);
     Color activeIconColor =
@@ -91,8 +100,11 @@ class CustomThemeData {
       height: height,
       width: width,
       textSize: textSize,
-      subTextSize: subTextSize,
+      subHeaderTextSize: subHeaderTextSize,
       headerTextSize: headerTextSize,
+      smallTextSize: smallTextSize,
+      mediumTextSize: mediumTextSize,
+      largeHeaderTextSize: largeHeaderTextSize,
       topPadding: topPadding,
       harizontalPadding: harizontalPadding,
       primaryColor: primaryColor,
